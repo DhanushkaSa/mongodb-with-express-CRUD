@@ -1,6 +1,9 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
+import { type } from "os";
 
-const userSchema = Schema({
+const userSchema = new Schema({
+
+
     name: {
         type: String,
         required: true,
@@ -12,10 +15,19 @@ const userSchema = Schema({
         unique: true
     },
     password: String,
-    email: String
-},{
-    timestamps:true
+    email: String,
+
+    profile: {
+        type: Types.ObjectId,
+        ref: "Profile",
+        unique: true
+    }
+}, {
+    timestamps: true
 })
+
+
+
 
 const User = model("User", userSchema);
 
